@@ -1,0 +1,38 @@
+replicaCount: 1
+
+image:
+  repository: now-playing
+  tag: dev
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8000
+
+ingress:
+  enabled: true
+  host: now.local
+  path: /
+  pathType: Prefix
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 250m
+    memory: 128Mi
+
+probes:
+  enabled: true
+  path: /health
+  port: 8000
+  readinessInitialDelaySeconds: 2
+  livenessInitialDelaySeconds: 5
+
+hpa:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 60

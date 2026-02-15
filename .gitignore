@@ -1,0 +1,20 @@
+# Mac
+.DS_Store
+
+# Terraform (if used)
+.terraform/
+*.tfstate*
+.terraform.lock.hcl
+
+# Kubeconfig
+kubeconfig.yaml
+*.kubeconfig
+
+# Logs
+*.log
+
+# Node (if any)
+node_modules/
+
+# Docker
+*.tar
